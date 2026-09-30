@@ -2,7 +2,7 @@
 
 **User story:** SCRUM-101 – Saucedemo e-commerce Checkout Process
 **Source:** `userStorey/sauceDemo_UserStory.md`
-**Seed file:** `seed.spec.ts` (logs in and lands on the Products page)
+**Seed file:** `tests/seed.spec.ts` (logs in and lands on the Products page)
 **Explored on:** 2026-09-30, Chromium, against the live site
 
 ## 1. Application Overview

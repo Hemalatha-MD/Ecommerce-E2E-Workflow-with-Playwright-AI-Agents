@@ -1,6 +1,6 @@
 // Shared test data and flow helpers for the SauceDemo checkout suites.
 // spec: specs/saucedemo-checkout-test-plan.md
-// seed: seed.spec.ts
+// seed: tests/seed.spec.ts
 const { expect } = require('@playwright/test');
 
 const USER = { username: 'standard_user', password: 'secret_sauce' };
@@ -32,7 +32,7 @@ const URLS = {
   complete: /\/checkout-complete\.html$/,
 };
 
-/** Same steps as seed.spec.ts: log in and land on the Products page. */
+/** Same steps as tests/seed.spec.ts: log in and land on the Products page. */
 async function login(page) {
   await page.goto('/');
   await page.locator('#user-name').fill(USER.username);

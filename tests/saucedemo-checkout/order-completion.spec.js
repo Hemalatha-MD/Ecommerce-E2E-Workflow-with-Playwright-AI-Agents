@@ -1,5 +1,5 @@
 // spec: specs/saucedemo-checkout-test-plan.md (section 4.5)
-// seed: seed.spec.ts
+// seed: tests/seed.spec.ts
 const { test, expect } = require('@playwright/test');
 const {
   PRODUCTS, VALID_INFO, TITLES, URLS,
