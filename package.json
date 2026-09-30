@@ -1,0 +1,15 @@
+{
+  "name": "saucedemo-checkout-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright tests for the SauceDemo checkout user story (SCRUM-101)",
+  "scripts": {
+    "test": "playwright test tests/saucedemo-checkout --project=chromium",
+    "test:defects": "playwright test tests/saucedemo-checkout --project=chromium --grep @defect",
+    "test:stable": "playwright test tests/saucedemo-checkout --project=chromium --grep-invert @defect",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

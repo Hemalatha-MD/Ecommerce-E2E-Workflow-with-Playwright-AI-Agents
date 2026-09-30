@@ -1,0 +1,34 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps chromium
+    # Regression gate: every test except the ones tagged for known application defects.
+    - name: Run Playwright tests
+      run: npx playwright test --grep-invert "@defect"
+    # Known-defect tests fail until the application is fixed, so they must not fail the build.
+    # The line reporter keeps this step from overwriting the HTML report of the step above.
+    - name: Run known-defect tests (expected to fail)
+      if: ${{ !cancelled() }}
+      continue-on-error: true
+      run: npx playwright test --grep "@defect" --reporter=line
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
